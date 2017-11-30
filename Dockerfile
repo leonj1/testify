@@ -8,7 +8,7 @@ RUN apt-get install -y mysql-client
 ADD localhost.crt /app/
 ADD server.key /app/
 ADD bootstrap.sh /
-ADD enchilada /app/
+ADD testify /app/
 
 ENTRYPOINT ["/bootstrap.sh"]
 
