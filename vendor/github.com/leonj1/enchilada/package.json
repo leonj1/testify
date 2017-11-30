@@ -1,0 +1,27 @@
+{
+  "name": "enchilada",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-add-src": "^0.2.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-clean": "^0.3.1",
+    "gulp-cli": "^1.2.2",
+    "gulp-inject": "^4.2.0",
+    "gulp-preprocess": "^2.0.0",
+    "gulp-replace": "^0.5.4",
+    "gulp-rev": "^7.1.2",
+    "underscore": "^1.8.3",
+    "yargs": "^6.6.0"
+  },
+  "dependencies": {
+    "gulp-rename": "^1.2.2"
+  }
+}

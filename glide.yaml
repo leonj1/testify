@@ -1,0 +1,11 @@
+package: github.com/leonj1/testify
+import:
+- package: github.com/davecgh/go-spew
+  subpackages:
+  - spew
+- package: github.com/go-sql-driver/mysql
+- package: github.com/gorilla/mux
+- package: github.com/leonj1/enchilada
+  subpackages:
+  - models
+- package: github.com/orcaman/concurrent-map
