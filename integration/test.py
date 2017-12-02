@@ -5,7 +5,7 @@ import unittest
 import json
 import uuid
 
-host = "http://localhost:8843"
+host = "http://localhost:8743"
 
 def my_random_string(string_length=10):
     """Returns a random string of length string_length."""
@@ -21,18 +21,33 @@ class MyTest(unittest.TestCase):
         self.assertEqual(r.status_code, 200)
 
     #@unittest.skip("testing skipping")
-    def test_add_hardware_without_tags(self):
-        randomHost = my_random_string()
+    def test_add_confession(self):
         payload = {
-            "host": randomHost
-        }
-        r = requests.post("{}/hardware".format(host), json=payload)
-        self.assertEqual(r.status_code, 201)
-        # saving the same host a second time should 403
-        r = requests.post("{}/hardware".format(host), json=payload)
-        self.assertEqual(r.status_code, 403)
+           "name": "dev01",
+           "entity_type": "kubernetes cluster",
+           "last_update": {
+             "date": "02/01/2017 03:04:05 PM",
+             "by": "someone",
+             "status": "pass"
+           },
+           "journal": {
+             "1485979445": {
+               "by": "someone",
+               "checks": [
+                 {
+                   "name": "checked mounts",
+                   "date": "1485979445",
+                   "status": "pass"
+                 }
+               ]
+             }
+           }
+         }
 
-    #@unittest.skip("testing skipping")
+        r = requests.post("{}/confessions".format(host), json=payload)
+        self.assertEqual(r.status_code, 201)
+
+    @unittest.skip("testing skipping")
     def test_add_hardware_with_tags(self):
         randomHost = my_random_string()
         payload = {
@@ -58,7 +73,7 @@ class MyTest(unittest.TestCase):
         self.assertEquals(r.status_code, 200)
         #print 'Content: {}'.format(r.content)
 
-    #@unittest.skip("testing skipping")
+    @unittest.skip("testing skipping")
     def test_add_hardware_with_tags_and_services(self):
         randomHost = my_random_string()
         payload = {
