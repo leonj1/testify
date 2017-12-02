@@ -2,28 +2,29 @@ USE mysql;
 UPDATE user SET host = '%' WHERE host = '1%';
 FLUSH PRIVILEGES;
 
-create database enchilada;
+create database testify;
 
-create table enchilada.hardware (
+create table testify.check (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  host VARCHAR(128) NOT NULL,
-  create_date timestamp default CURRENT_TIMESTAMP NOT NULL
-);
-
-create table enchilada.tags (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `host` VARCHAR(128) NOT NULL,
-  `key` VARCHAR(128) NOT NULL,
-  `value` VARCHAR(128) NOT NULL
-);
-
-create table enchilada.services (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `host` VARCHAR(128) NOT NULL,
   `name` VARCHAR(128) NOT NULL,
-  `short_name` VARCHAR(128) NOT NULL,
-  `version` VARCHAR(128) NOT NULL,
-  `repo` VARCHAR(128) NOT NULL,
-  `is_docker` INT NOT NULL,
-  `install_date` timestamp default CURRENT_TIMESTAMP
+  `confession_name` VARCHAR(128) NOT NULL,
+  `status` VARCHAR(32) NOT NULL,
+  `journal_date` timestamp default CURRENT_TIMESTAMP NOT NULL
+);
+
+create table testify.journal (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `by` VARCHAR(128) NOT NULL,
+  `confession_name` VARCHAR(128) NOT NULL,
+  `status` VARCHAR(32) NOT NULL,
+  `journal_date` timestamp default CURRENT_TIMESTAMP NOT NULL
+);
+
+create table testify.confession (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(128) NOT NULL,
+  `entity_type` VARCHAR(128) NOT NULL,
+  `last_update_date` timestamp default CURRENT_TIMESTAMP NOT NULL,
+  `last_update_by` VARCHAR(128) NOT NULL,
+  `last_update_status` VARCHAR(32) NOT NULL
 );

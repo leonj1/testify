@@ -5,7 +5,7 @@ export DBUSER=${DBUSER:=root}
 export DBPASS=${DBPASS:=}
 export DBHOST=${DBHOST:=localhost}
 export DBPORT=${DBPORT:=3306}
-export HTTPPORT=${HTTPPORT:=443}
+export HTTPPORT=${HTTPPORT:=8080}
 
 cd /app
 /app/testify \
