@@ -7,6 +7,7 @@ import uuid
 
 host = "http://localhost:8743"
 
+
 def my_random_string(string_length=10):
     """Returns a random string of length string_length."""
     random = str(uuid.uuid4()) # Convert UUID format to a Python string.
@@ -14,29 +15,30 @@ def my_random_string(string_length=10):
     random = random.replace("-","") # Remove the UUID '-'.
     return random[0:string_length] # Return the random string.
 
+
 class MyTest(unittest.TestCase):
-    #@unittest.skip("testing skipping")
+    # @unittest.skip("testing skipping")
     def test_health_check(self):
         r = requests.get("{}/public/health".format(host))
         self.assertEqual(r.status_code, 200)
 
-    #@unittest.skip("testing skipping")
+    # @unittest.skip("testing skipping")
     def test_add_confession(self):
         payload = {
            "name": "dev01",
            "entity_type": "kubernetes cluster",
            "last_update": {
-             "date": "02/01/2017 03:04:05 PM",
+             "date": "2017-02-01 03:04:05 PM",
              "by": "someone",
              "status": "pass"
            },
            "journal": {
-             "1485979445": {
+             "2017-02-01 03:04:05 PM": {
                "by": "someone",
                "checks": [
                  {
                    "name": "checked mounts",
-                   "date": "1485979445",
+                   "date": "2017-02-01 03:04:05 PM",
                    "status": "pass"
                  }
                ]
@@ -61,7 +63,7 @@ class MyTest(unittest.TestCase):
         r = requests.get("{}/tags/environment".format(host))
         self.assertEqual(r.status_code, 200)
         # TODO Find a way to ignore create_date
-        #self.assertEqual(r.content, "")
+        # self.assertEqual(r.content, "")
         payload = {
             "rack": "1"
         }
@@ -71,7 +73,7 @@ class MyTest(unittest.TestCase):
         self.assertEquals(r.status_code, 200)
         r = requests.get("{}/tags/environment".format(host))
         self.assertEquals(r.status_code, 200)
-        #print 'Content: {}'.format(r.content)
+        # print 'Content: {}'.format(r.content)
 
     @unittest.skip("testing skipping")
     def test_add_hardware_with_tags_and_services(self):
@@ -94,7 +96,7 @@ class MyTest(unittest.TestCase):
         r = requests.post("{}/hardware".format(host), json=payload)
         self.assertEqual(r.status_code, 201)
         # TODO Find a way to ignore create_date
-        #self.assertEqual(r.content, "")
+        # self.assertEqual(r.content, "")
         service = {
             "name": "Apache Solr",
             "short_name": "solr",
@@ -111,6 +113,7 @@ class MyTest(unittest.TestCase):
         }
         r = requests.put("{}/services/{}".format(host, randomHost), json=service)
         self.assertEqual(r.status_code, 200)
+
 
 if __name__ == '__main__':
     unittest.main()

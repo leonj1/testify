@@ -5,20 +5,19 @@ import (
 	"github.com/davecgh/go-spew/spew"
 	"github.com/kataras/go-errors"
 	"log"
-	"time"
 )
 
 const CheckTable = "check"
 
 type Check struct {
-	Id             int64     `json:"id,omitempty"`
-	Name           string    `json:"name,omitempty"`
-	ConfessionName string    `json:"confession_name,omitempty"`
-	JournalDate    time.Time `json:"journal_date,omitempty"`
-	Status         string    `json:"status,omitempty"`
+	Id             int64  `json:"id,omitempty"`
+	Name           string `json:"name,omitempty"`
+	ConfessionName string `json:"confession_name,omitempty"`
+	JournalDate    MyTime `json:"journal_date,omitempty"`
+	Status         string `json:"status,omitempty"`
 }
 
-func (c Check) FindChecksByConfessionNameAndJournalDate(confessionName string, journalDate time.Time) (*[]Check, error) {
+func (c Check) FindChecksByConfessionNameAndJournalDate(confessionName string, journalDate MyTime) (*[]Check, error) {
 	log.Printf("Fetching checks by confession name %s and journal date %s\f", confessionName, journalDate)
 	if confessionName == "" || journalDate.IsZero() {
 		return nil, errors.New("confession name and journal date must be provided")

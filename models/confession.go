@@ -5,17 +5,16 @@ import (
 	"github.com/davecgh/go-spew/spew"
 	"github.com/kataras/go-errors"
 	"log"
-	"time"
 )
 
 const ConfessionTable = "confession"
 
 type Confession struct {
-	Id         int64                 `json:"id,omitempty"`
-	Name       string                `json:"name,omitempty"`
-	EntityType string                `json:"entity_type,omitempty"`
-	LastUpdate LastUpdate            `json:"last_update,omitempty"`
-	Journal    map[time.Time]Journal `json:"journal,omitempty"`
+	Id         int64              `json:"id,omitempty"`
+	Name       string             `json:"name,omitempty"`
+	EntityType string             `json:"entity_type,omitempty"`
+	LastUpdate LastUpdate         `json:"last_update,omitempty"`
+	Journal    map[MyTime]Journal `json:"journal,omitempty"`
 }
 
 func (c Confession) Save() (*Confession, error) {
@@ -63,7 +62,7 @@ func (c Confession) FindAll() (*[]Confession, error) {
 			log.Printf("Problem fetching journam for confession: %s\n", spew.Sdump(err))
 			return nil, err
 		}
-		confessionJournals := make(map[time.Time]Journal)
+		confessionJournals := make(map[MyTime]Journal)
 		for _, journal := range *journals {
 			confessionJournals[journal.JournalDate] = journal
 		}
@@ -101,7 +100,7 @@ func (c Confession) FindByName(confessionName string) (*Confession, error) {
 			log.Printf("Problem fetching journam for confession: %s\n", spew.Sdump(err))
 			return nil, err
 		}
-		confessionJournals := make(map[time.Time]Journal)
+		confessionJournals := make(map[MyTime]Journal)
 		for _, journal := range *journals {
 			confessionJournals[journal.JournalDate] = journal
 		}

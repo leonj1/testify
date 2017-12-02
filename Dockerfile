@@ -1,9 +1,9 @@
-FROM ubuntu:16.04
+FROM alpine:3.7
 
 MAINTAINER Jose Leon
 
-RUN apt-get update
-RUN apt-get install -y mysql-client
+RUN apk update && \
+    apk add -y mysql-client bash
 
 ADD bootstrap.sh /
 ADD testify /app/

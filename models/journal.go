@@ -5,18 +5,17 @@ import (
 	"github.com/davecgh/go-spew/spew"
 	"github.com/kataras/go-errors"
 	"log"
-	"time"
 )
 
 const JournalTable = "journal"
 
 type Journal struct {
-	Id             int64     `json:"id,omitempty"`
-	By             string    `json:"by,omitempty"`
-	ConfessionName string    `json:"confession_name,omitempty"`
-	Checks         []Check   `json:"checks,omitempty"`
-	Status         string    `json:"status,omitempty"`
-	JournalDate    time.Time `json:"journal_date,omitempty"`
+	Id             int64   `json:"id,omitempty"`
+	By             string  `json:"by,omitempty"`
+	ConfessionName string  `json:"confession_name,omitempty"`
+	Checks         []Check `json:"checks,omitempty"`
+	Status         string  `json:"status,omitempty"`
+	JournalDate    MyTime  `json:"journal_date,omitempty"`
 }
 
 func (j Journal) FindByConfessionName(confessionName string) (*[]Journal, error) {

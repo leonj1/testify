@@ -14,6 +14,9 @@ docker: build
 integration: docker
 	./integration/test.sh
 
+do_test: integration
+	python ./integration/test.py
+
 publish: integration
 	docker tag $(DOCKER_REPO)/$(DOCKER_IMAGE):$(DOCKER_IMAGE_TAG) $(DOCKER_REPO)/$(DOCKER_IMAGE):$(DOCKER_GIT_RELEASE_TAG)
 	docker push $(DOCKER_REPO)/$(DOCKER_IMAGE):$(DOCKER_GIT_RELEASE_TAG)
